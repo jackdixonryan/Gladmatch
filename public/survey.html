@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class='has-navbar-fixed-top'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hello Bulma!</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+        </script>
+    </head>
+
+    <body>
+
+        <nav class='navbar is-fixed-top is-dark' role='navigation' aria-label="main navigation">
+            <div class='navbar-brand'>
+                <a class='navbar-item' href='#'>
+                    <i class="fas fa-archway"></i>
+                    <h2>GladFinder</h2>
+                </a>
+
+                <a role='button' class='navbar-burger' data-target = 'navMenu' aria-label='menu' aria-expanded='false'>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class='navbar-menu' id='navMenu'>
+                <div class='navbar-start'>
+                    <a class='navbar-item' href='#'>
+                        Register
+                    </a>
+                </div>
+                <div class='navbar-end'>
+
+                </div>
+            </div>
+        </nav>
+
+        <section class="section">
+            <div class="container">
+                <h1 class="title">
+                    Hello World
+                </h1>
+                <p class="subtitle">
+                My first website with <strong>Bulma</strong>!
+                </p>
+            </div>
+        </section>
+
+        <form id='myForm'>
+            <div class='section'>
+                <div class='field'>
+                    <label class='label'>Label</label>
+                    <input class='input' type='text' placeholder='text-input' id='name'>
+                    <p class='help'>This is a help text</p>
+                </div>
+                <div class='control'>
+                    <button class='button is-dark' type= 'submit' id='submit'>Submit</button>
+                </div>
+            </div>
+        </form>
+    </body>
+
+    <script>
+    //Adding the BULMA functionality;
+    $(document).ready(() => {
+        $('.navbar-burger').click(() => {
+            $('.navbar-burger').toggleClass('is-active');
+            $('.navbar-menu').toggleClass('is-active');
+        });
+    });
+
+    const submit = document.getElementById('submit');
+
+    submit.addEventListener('click', () => {
+        $.post('/api/matches', $('#myForm').serialize(), data => {
+            console.log('success');
+        });
+    });
+
+    </script>
+
+</html>
