@@ -52,18 +52,40 @@
             </div>
         </section>
 
-        <form id='myForm'>
-            <div class='section'>
+        <div class='section'>
+            <form id='myForm'>
+
                 <div class='field'>
-                    <label class='label'>Label</label>
-                    <input class='input' type='text' placeholder='text-input' id='name'>
-                    <p class='help'>This is a help text</p>
+                    <label class='label'>Name</label>
+                    <div class='control'>
+                        <input class='input' type='text' name='name'>
+                    </div>
+                    <p>Please enter your full name.</p>
                 </div>
-                <div class='control'>
-                    <button class='button is-dark' type= 'submit' id='submit'>Submit</button>
+
+                <div class='field'>
+                    <label class='label'>What is your favored weapon?</label>
+                    <div class='control'>
+                        <div class='select'>
+                            <select name='weapon'>
+                                <option>Sword</option>
+                                <option>Mace</option>
+                                <option>Spear</option>
+                                <option>Whip</option>
+                                <option>Bare Hands</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </form>
+
+                <div class='field'>
+                    <div class='control'>
+                        <button class='button is-dark'>Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </body>
 
     <script>
@@ -77,11 +99,18 @@
 
     const submit = document.getElementById('submit');
 
-    submit.addEventListener('click', () => {
+    let test = [];
+
+    $("#myForm").on('submit', event => {
+        event.preventDefault();
+        //tried to use the 'this' keyword here, broke it. Ask about why that would be the case tonight.
+        console.log($('#myForm').serialize());
         $.post('/api/matches', $('#myForm').serialize(), data => {
-            console.log('success');
+            console.log('success.');
         });
     });
+
+
 
     </script>
 
