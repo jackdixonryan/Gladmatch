@@ -4,26 +4,31 @@ module.exports = app => {
     const fs= require('fs');
 
     //Our get request for the API now renders the matches stored in matches.json
-    app.get('/api/matches', (req, res) => {
+    app.get('/api/matches', (req, res) => {      
         return res.json(matches);
     });
 
-    //This is a bit more difficult and is likely broken. The idea is that each post request modifies the matches object parsed above and rewrites matches.json with the newly added response.
-    let matches = [
-        {
-            "name" : "Spartacus",
-            "answers": [
-                0,
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    ];
+    //Matches just exports the array of objects held within matches JS.
+    let matches = require('../app/data/matches.js');
 
+    //Our post route, triggered only by the survey's submission...
     app.post('/api/matches', (req, res) => {
+
+        //Defining our variables for req.body (the contents of the survey on submission, and a sum.)
         let newEntry = req.body;
+        let sum = 0;
+
+        //Using an iterator, we use the answers given to the number choice questions on the survey to tally up a total score.
+        for (let i = 0; i < newEntry.choice.length; i++){
+            let answer = parseInt(newEntry.choice[i]);
+            sum += answer;
+        }
+
+        //We add this score to the newEntry object variable...
+        console.log(sum)
+        newEntry.total = sum;
+
+        //And we push it all to our data, along with a response if someone hits the push route ( /api/matches )
         matches.push(newEntry);
         res.json(newEntry);
     });

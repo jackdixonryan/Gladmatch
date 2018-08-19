@@ -12,15 +12,22 @@
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous">
         </script>
+
+        <style>
+            select option{
+                background-color: red;
+            }
+
+        </style>
     </head>
 
     <body>
 
-        <nav class='navbar is-fixed-top is-dark' role='navigation' aria-label="main navigation">
+        <nav class='navbar is-fixed-top is-success' role='navigation' aria-label="main navigation">
             <div class='navbar-brand'>
-                <a class='navbar-item' href='#'>
+                <a class='navbar-item' href='./home.html'>
                     <i class="fas fa-archway"></i>
-                    <h2>GladFinder</h2>
+                    <h2>IFF</h2>
                 </a>
 
                 <a role='button' class='navbar-burger' data-target = 'navMenu' aria-label='menu' aria-expanded='false'>
@@ -31,7 +38,7 @@
             </div>
             <div class='navbar-menu' id='navMenu'>
                 <div class='navbar-start'>
-                    <a class='navbar-item' href='#'>
+                    <a class='navbar-item' href='./survey.html'>
                         Register
                     </a>
                 </div>
@@ -44,39 +51,124 @@
         <section class="section">
             <div class="container">
                 <h1 class="title">
-                    Hello World
+                    Sign up now for 0 schmeckels. 
                 </h1>
                 <p class="subtitle">
-                My first website with <strong>Bulma</strong>!
+                The universe is infinite, nothing matters, and we're all going to die. Please, just come take our survey.
                 </p>
+                <button class='button is-success' id='start' data-click='unclicked'>Start</button>
+                <hr>
             </div>
         </section>
 
-        <div class='section'>
+        <div class='section' id='survey'>
             <form id='myForm'>
 
                 <div class='field'>
                     <label class='label'>Name</label>
                     <div class='control'>
-                        <input class='input' type='text' name='name'>
+                        <input class='input' type='text' name='name' id='name'>
                     </div>
                     <p>Please enter your full name.</p>
                 </div>
 
+                <h3>Question 1</h3>
                 <div class='field'>
-                    <label class='label'>What is your favored weapon?</label>
+                    <label class='label'>Are you a homebody?</label>
                     <div class='control'>
                         <div class='select'>
-                            <select name='weapon'>
-                                <option>Sword</option>
-                                <option>Mace</option>
-                                <option>Spear</option>
-                                <option>Whip</option>
-                                <option>Bare Hands</option>
+                            <select name='choice' class='choice'>
+                                <option>select...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
                             </select>
                         </div>
                     </div>
                 </div>
+
+                <div class='field'>
+                    <label class='label'>Are you a homebody?</label>
+                    <div class='control'>
+                        <div class='select'>
+                            <select name='choice' class='choice'>
+                                <option>select...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Are you a homebody?</label>
+                    <div class='control'>
+                        <div class='select'>
+                            <select name='choice' class='choice'>
+                                <option>select...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Are you a homebody?</label>
+                    <div class='control'>
+                        <div class='select'>
+                            <select name='choice' class='choice'>
+                                <option>select...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Are you a homebody?</label>
+                    <div class='control'>
+                        <div class='select'>
+                            <select name='choice' class='choice'>
+                                <option>select...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Are you a homebody?</label>
+                    <div class='control'>
+                        <div class='select'>
+                            <select name='choice' class='choice'>
+                                <option>select...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class='field'>
                     <div class='control'>
@@ -90,6 +182,9 @@
 
     <script>
     //Adding the BULMA functionality;
+    const survey = document.getElementById('survey');
+    $(survey).hide();
+
     $(document).ready(() => {
         $('.navbar-burger').click(() => {
             $('.navbar-burger').toggleClass('is-active');
@@ -97,18 +192,59 @@
         });
     });
 
+    const start = document.getElementById('start');
     const submit = document.getElementById('submit');
 
-    let test = [];
+    $(start).on('click', () => {
+        if ($(start).attr('data-click') === 'clicked'){
+            $(start).attr('data-click', 'unclicked');
+            $(survey).hide();
+        } else if ($(start).attr('data-click') === 'unclicked'){
+            $(start).attr('data-click', 'clicked');
+            $(survey).show();
+        }
+    });
 
     $("#myForm").on('submit', event => {
         event.preventDefault();
-        //tried to use the 'this' keyword here, broke it. Ask about why that would be the case tonight.
-        console.log($('#myForm').serialize());
+
+        //Getting local variables on form submission.
+        let localName = document.getElementById('name').value;
+        let values = document.getElementsByClassName('choice');
+        let localSum = 0;
+        for (let i = 0; i < values.length; i++){
+            let answer = parseInt(values[i].value)
+            localSum += answer;
+        }
+
+        //Here's the plan: Get first, Post second. Every object in the matches.js now contains a sum, and to prevent the user from seeing their own name and picture appear, we'll just get a response from the base before they even post their data.
+        $.get('/api/matches', data =>{
+            let result = 100;
+            let match;
+            //on the get, run a for loop through the data...
+            for (let k = 0; k < data.length; k++) {
+                //create a diff var each time...
+                let diff = data[k].total - localSum;
+                //if the difference is negative, convert it to positive (since all we're looking for is distance to 0, it doesn't matter, and now our checker can only look for the smallest number.)
+                if (diff < 0){
+                    diff *= -1;
+                }
+                //if this difference is less than the current number stored in result (which is initially set artificially high), we set result equal to the current diff and set the match variable equal to the current data. This way, we exit this whole for loop with a match variable set to the object in the database with the score that most closely resembles the user's score. Voila. 
+                if (diff < result){
+                    result = diff;
+                    match = data[k];
+                }               
+            }
+
+            console.log(match);
+        });
+
         $.post('/api/matches', $('#myForm').serialize(), data => {
             console.log('success.');
-        });
+        });     
     });
+
+
 
 
 
