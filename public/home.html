@@ -1,12 +1,96 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <h1>Hello World</h1>
-</body>
+<html class='has-navbar-fixed-top'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Home</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+        </script>
+
+        <style>
+            i {
+                margin-right: 20px;
+            }
+
+            select {
+                width: 300px;
+                margin-bottom: 20px;
+            }
+
+            .links {
+                padding: 0;
+                margin: 0;
+                width: 200px;
+                text-align:center;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav class='navbar is-fixed-top is-success' role='navigation' aria-label="main navigation">
+            <div class='navbar-brand'>
+                <a class='navbar-item' href='./home.html'>
+                    <i class="fas fa-flask"></i>
+                    <h2>Interdimensional Friend Finder</h2>
+                </a>
+
+                <a role='button' class='navbar-burger' data-target = 'navMenu' aria-label='menu' aria-expanded='false'>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class='navbar-menu' id='navMenu'>
+                <div class='navbar-start'>
+                    <a class='navbar-item' href='./survey.html'>
+                        Register
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <section class='section'>
+            <div class='container'>
+                <h1 class='title'>Find your Match.</h1>
+                <p>The universe is a pretty massive place. It can be difficult to find the right person in the vast expanses of time and space -- or at least it was. Now, you have the Interdimensional Friend Finder! IFF will discover a match for you across the myriad facets of the multiverse.</p>
+                <hr>
+                <p><strong>Interested?</strong></p>
+                <br>
+                <a href='/survey'>
+                    <button class='button is-success'>
+                        Take the Survey Now!
+                    </button>
+                </a>
+            </div>
+        </section>
+
+        <section class='section'>
+            <div class='container'>
+                <div class='links'>
+                    <a href='/api/matches' target='_blank'>View the Full API Here</a>
+                </div>
+            </div>
+        </section>
+    </body>
+
+    <script>
+    //Bulma menu functionality
+    $(document).ready(() => {
+        $('.navbar-burger').click(() => {
+            $('.navbar-burger').toggleClass('is-active');
+            $('.navbar-menu').toggleClass('is-active');
+        });
+    });
+    </script>
+
 </html>

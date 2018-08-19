@@ -14,11 +14,25 @@
         </script>
 
         <style>
-            select option{
-                background-color: red;
+            i {
+                margin-right: 20px;
             }
 
+            select {
+                width: 300px;
+                margin-bottom: 20px;
+            }
+
+            .links {
+                padding: 0;
+                margin: 0;
+                width: 200px;
+                text-align:center;
+                margin-right: auto;
+                margin-left: auto;
+            }
         </style>
+
     </head>
 
     <body>
@@ -26,8 +40,8 @@
         <nav class='navbar is-fixed-top is-success' role='navigation' aria-label="main navigation">
             <div class='navbar-brand'>
                 <a class='navbar-item' href='./home.html'>
-                    <i class="fas fa-archway"></i>
-                    <h2>IFF</h2>
+                    <i class="fas fa-flask"></i>
+                    <h2>Interdimensional Friend Finder</h2>
                 </a>
 
                 <a role='button' class='navbar-burger' data-target = 'navMenu' aria-label='menu' aria-expanded='false'>
@@ -54,7 +68,7 @@
                     Sign up now for 0 schmeckels. 
                 </h1>
                 <p class="subtitle">
-                The universe is infinite, nothing matters, and we're all going to die. Please, just come take our survey.
+                There are infinite worlds, nothing makes sense, everything is chaos. Please, just come take our survey.
                 </p>
                 <button class='button is-success' id='start' data-click='unclicked'>Start</button>
                 <hr>
@@ -71,10 +85,16 @@
                     </div>
                     <p>Please enter your full name.</p>
                 </div>
-
-                <h3>Question 1</h3>
+                
                 <div class='field'>
-                    <label class='label'>Are you a homebody?</label>
+                    <label class='label'>Your Image</label>
+                    <div class='control'>
+                        <input class='input' type='text' name='image'>
+                    </div>
+                    <p>Please provide an image URL so that people can match to you!</p>
+                </div>
+                <div class='field'>
+                    <label class='label'>You are a genius.<label>
                     <div class='control'>
                         <div class='select'>
                             <select name='choice' class='choice'>
@@ -90,7 +110,7 @@
                 </div>
 
                 <div class='field'>
-                    <label class='label'>Are you a homebody?</label>
+                    <label class='label'>You would be comfortable with sacrificing your morality in the name of personal gain.</label>
                     <div class='control'>
                         <div class='select'>
                             <select name='choice' class='choice'>
@@ -106,7 +126,7 @@
                 </div>
 
                 <div class='field'>
-                    <label class='label'>Are you a homebody?</label>
+                    <label class='label'>You would be more comfortable as a member of a more functional, but less free, society.</label>
                     <div class='control'>
                         <div class='select'>
                             <select name='choice' class='choice'>
@@ -122,7 +142,7 @@
                 </div>
 
                 <div class='field'>
-                    <label class='label'>Are you a homebody?</label>
+                    <label class='label'>Rate your last experience at Blips and Chitz.</label>
                     <div class='control'>
                         <div class='select'>
                             <select name='choice' class='choice'>
@@ -138,7 +158,7 @@
                 </div>
 
                 <div class='field'>
-                    <label class='label'>Are you a homebody?</label>
+                    <label class='label'>People ask your advice often.</label>
                     <div class='control'>
                         <div class='select'>
                             <select name='choice' class='choice'>
@@ -154,7 +174,23 @@
                 </div>
 
                 <div class='field'>
-                    <label class='label'>Are you a homebody?</label>
+                    <label class='label'>You prefer to stay where you are rather than roam about.</label>
+                    <div class='control'>
+                        <div class='select'>
+                            <select name='choice' class='choice'>
+                                <option>select...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Answer from 1-5, with a 1 denoting that you believe parties are to 'Get in with the cool crowd' and a 5 indicating that you believe parties are to get 'Riggity Riggity Wrecked, Son'</label>
                     <div class='control'>
                         <div class='select'>
                             <select name='choice' class='choice'>
@@ -178,6 +214,18 @@
 
             </form>
         </div>
+
+        <section id='result' class='section'>
+        </section>
+
+        <section class='section'>
+            <div class='container'>
+                <div class='links'>
+                    <a href='/api/matches' target='_blank'>View the Full API Here</a>
+                </div>
+            </div>
+        </section>
+
     </body>
 
     <script>
@@ -237,16 +285,36 @@
             }
 
             console.log(match);
+            
+            //updating the UI
+            let html = `
+                <h1 class='title'>Your Interdimensional Match</h1>
+                <table class='table is-fullwidth is-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Their Score</th>
+                            <th>Their Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${match.name}</td>
+                            <td>${match.total}</td>
+                            <td>
+                                <img src='${match.image}'>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+            document.getElementById('result').innerHTML = html;
         });
 
         $.post('/api/matches', $('#myForm').serialize(), data => {
             console.log('success.');
         });     
     });
-
-
-
-
 
     </script>
 
